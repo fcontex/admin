@@ -1,0 +1,27 @@
+/* FContex Admin —— Quill 编辑器后台皮肤适配
+ * 只覆盖配色与尺寸，不修改 quill.snow.css 本身
+ */
+
+.fc-quill { border:1px solid #ccd4dd; background:#fff; }
+.fc-quill .ql-toolbar.ql-snow { border:0; border-bottom:1px solid #e3e8ee; background:#f7f9fb; padding:4px 6px; }
+.fc-quill .ql-container.ql-snow { border:0; font-family:inherit; font-size:13px; }
+.fc-quill .ql-editor { min-height:320px; line-height:1.7; }
+.fc-quill .ql-editor img { max-width:100%; }
+.fc-quill .ql-editor.ql-blank::before { font-style:normal; color:#9aa7b4; }
+
+/* 简洁模式（副标题等短文本） */
+.fc-quill.fc-quill-s .ql-editor { min-height:80px; }
+
+/* HTML 源码视图 */
+.fc-quill .fc-quill-source { display:none; width:100%; box-sizing:border-box; min-height:320px; padding:10px 12px; border:0; outline:0; resize:vertical; font:12px/1.7 Consolas,Monaco,monospace; color:#333; }
+.fc-quill.fc-quill-s .fc-quill-source { min-height:80px; }
+
+/* 自定义按钮（附件、源码）沿用主题按钮尺寸，图标走 ql-stroke 描边色 */
+.fc-quill .ql-snow.ql-toolbar .fc-src.ql-active .ql-stroke { stroke:#398dfd; }
+
+/* 工具栏控件在窄屏下自适应换行 */
+@media (max-width:800px) {
+	.fc-quill .ql-toolbar.ql-snow { white-space:normal; }
+	.fc-quill .ql-toolbar.ql-snow .ql-formats { margin-right:8px; }
+	.fc-quill .ql-editor { min-height:240px; }
+}

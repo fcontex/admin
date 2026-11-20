@@ -1,0 +1,23 @@
+# 1.0.4 历史源码（仅对比参考，不纳入版本管理）
+src_1.0.4/
+
+# 运行时缓存
+src/store/cache/*
+
+# 数据库配置（含凭据，由安装向导生成；样例见 system.database.sample.php）
+src/store/config/system.database.php
+
+# docs 下的临时/参考目录（下划线开头，不纳入版本管理）
+docs/_*/
+
+# 用户上传的附件与生成的缩略图（内容数据，不纳入版本管理）
+# 注意：目录一旦被整体排除，其内部文件无法单独恢复，因此逐层忽略再逐层放行
+src/store/upload/*
+# 例外：安装后即被引用的系统默认头像
+!src/store/upload/member/
+src/store/upload/member/*
+!src/store/upload/member/201211/
+src/store/upload/member/201211/*
+!src/store/upload/member/201211/28/
+src/store/upload/member/201211/28/*
+!src/store/upload/member/201211/28/735951354083439.png

@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+/****
+ * content 模块私有样式（2026-11-17 自 skins/default/style.css 迁入，所有权归 content 模块）
+ * 加载约定：由本模块模板页自行 <link> 引入（皮肤 style.css 在前、本文件在后，级联方向：皮肤出原语、模块出特例）
+ * 服务于模板界面的样式与图片都在本目录（template/images/），本文件以同目录相对路径引用图片；icons/ 只放模块功能图标
+*/
+
+/* 栏目分类（category.select.php） */
+.category { background:#f3f3f3; margin-bottom:12px; border-bottom:1px solid #f3f3f3; box-shadow: 3px 3px 3px #ccc; -moz-box-shadow: 3px 3px 3px #ccc; -webkit-box-shadow: 3px 3px 3px #ccc;}
+.category dt, .category dd { height:42px; cursor:move; }
+.category dd { background:#fcfcfc; }
+.category span { height:16; line-height:16px; margin-top:12px; display:block; float:left; overflow:hidden; margin-left:10px; word-break:keep-all; }
+.category .A { width:80px; }
+.category .B { width:60px; }
+.category .C { width:200px; }
+.category .D { width:300px; }
+.category .E { padding-right:30px; float:right; }
+.category .B a   { background:url(icon_ud.gif) no-repeat right -16px; padding-right:16px; }
+.category .B a.d { background-position:right 0; }
+.category .type { color:#ccc; }
+
+/* 标签选择（tags.select.php） */
+.tags_select {}
+.tags_select ul li{display:block; float:left; width:115px; height:55px; padding:10px 0 10px 10px; border:1px solid #999; border-radius:1px; margin:5px; box-shadow:3px 3px 3px #ccc; -moz-box-shadow:3px 3px 3px #ccc; -webkit-box-shadow:3px 3px 3px #ccc;}
+.tags_select ul li span{float:left;}
+.tags_select ul li input.text{width:85px; height:20px; border:none;}
+.tags_select ul li.c{background:#FFF7E1;}
+.tags_select ul li.c input.text{}
+.tags_select ul li.a{border:1px solid #f00;}
+#tags_selector {position:absolute; z-index:999; margin-top:2px; background:#f2f2f2; padding:1px; border:2px solid #ccc;}
+#tags_selector .close {position:absolute; right:-4px; top:-4px; background:#ccc url(dialogs_tools.png) no-repeat -44px 0; width:20px; height:20px; overflow:hidden;}
+#tags_selector div {width:520px; height:182px; padding:8px; overflow-y:scroll;}
+#tags_selector div a {display:block; float:left; border:1px dashed #ccc; background:#eee; padding:2px 6px; margin:0 12px 8px 0;}
+
+/* 导航管理（navigate.select.php） */
+.navigate{display:block; padding:10px 0;}
+.navigate li{display:block; padding:15px; border:1px solid #ccc; margin:0 10px 10px 0; border-radius:3px; background:#fff;}
+.navigate li span{float:right;}
+.navigate li .content{display:block; margin-top:10px;}
+.navigate li .content textarea{width:100%; height:300px; margin:10px 0;}
+.navigate li .content p{ display:block; padding:8px 0;}

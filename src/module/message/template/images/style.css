@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+/****
+ * message 模块私有样式（2026-11-17 自 skins/default/style.css 迁入，所有权归 message 模块）
+ * 加载约定：由本模块模板页自行 <link> 引入（皮肤 style.css 在前、本文件在后，级联方向：皮肤出原语、模块出特例）
+ * 服务于模板界面的样式与图片都在本目录（template/images/），本文件以同目录相对路径引用图片；icons/ 只放模块功能图标
+*/
+
+/* 评论/留言 List */
+.comment { background:#f3f3f3; margin:12px 0; border-bottom:1px solid #f3f3f3; box-shadow: 3px 3px 3px #ccc; -moz-box-shadow: 3px 3px 3px #ccc; -webkit-box-shadow: 3px 3px 3px #ccc;}
+.comment dt, .comment dd { height:42px; }
+.comment dd { background:#fcfcfc; }
+.comment span { height:16px; line-height:16px; margin-top:12px; display:block; float:left; overflow:hidden; margin-left:10px; word-break:keep-all; }
+.comment .A { width:60px; }
+.comment .B { width:160px; }
+.comment .C { width:80px; }
+.comment .D { width:460px; }
+.comment .E { padding-right:20px; text-align:right; float:right; }
+.comment .E a.ud { background:url(icon_ud.gif) no-repeat right -16px; padding-right:16px; }
+.comment .E a.d  { background-position:right 0; }
+.comment .check { color:#ccc; }
