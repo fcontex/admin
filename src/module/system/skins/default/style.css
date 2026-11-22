@@ -7,6 +7,9 @@
 
 :root
 {
+	/* 原生控件（滚动条、下拉、日期选择器）跟随皮肤明暗 */
+	color-scheme: light;
+
 	/* 品牌色 */
 	--accent: #338ac7;
 	--accent-deep: #2a76ad;
@@ -23,6 +26,8 @@
 	--text-3: #8a97a8;
 	--line: #e2e8f0;
 	--line-strong: #cbd5e1;
+	--scroll-thumb: #cbd5e1;
+	--scroll-thumb-hover: #a9b7c6;
 
 	/* 状态色 */
 	--success: #16a34a;
@@ -49,6 +54,14 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+
+/* 滚动条：全局统一为细滚动条，明暗皮肤只换 --scroll-thumb 令牌 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scroll-thumb); background-clip: padding-box; border: 2px solid transparent; border-radius: var(--r-pill); }
+::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); background-clip: padding-box; }
+::-webkit-scrollbar-corner { background: transparent; }
+html { scrollbar-width: thin; scrollbar-color: var(--scroll-thumb) transparent; }
 
 /****
  * reset.css
@@ -105,12 +118,13 @@ body { padding: 10px; }
 #back_thumb span { position: absolute; display: block; width: 150px; height: 100%; background: rgba(12, 20, 32, .5); }
 
 /* 导航菜单 Dock（overflow 留给 ul 自己裁，否则 .back 的圆角投影会被切方） */
-#dock { width: 72px; position: absolute; z-index: 1; top: 50px; bottom: 75px; }
+#dock { width: 72px; position: absolute; z-index: 1; left: 4px; top: 50px; bottom: 75px; }
 #dock .back { position: absolute; z-index: -1; top: 6px; right: 4px; bottom: 6px; left: 4px; background: rgba(16, 24, 36, .5); -webkit-backdrop-filter: blur(22px) saturate(1.5); backdrop-filter: blur(22px) saturate(1.5); border: 1px solid rgba(255, 255, 255, .16); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 -1px 0 rgba(0, 0, 0, .16), 0 10px 28px -12px rgba(6, 16, 30, .55); }
-#dock ul { margin: 20px 4px 0; height: calc(100% - 20px); overflow-y: auto; overflow-x: hidden; }
-#dock ul::-webkit-scrollbar { width: 4px; }
-#dock ul::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .25); border-radius: var(--r-pill); }
-#dock ul::-webkit-scrollbar-track { background: transparent; }
+#dock ul { margin: 8px 4px 0; padding-right: 4px; height: calc(100% - 18px); overflow-y: auto; overflow-x: hidden; scrollbar-width: none;
+	-webkit-mask-image: linear-gradient(180deg, transparent 0, #000 10px, #000 calc(100% - 10px), transparent 100%);
+	        mask-image: linear-gradient(180deg, transparent 0, #000 10px, #000 calc(100% - 10px), transparent 100%); }
+/* Dock 内滚动：不画滚动条，滚轮与键盘照常滚动，靠上下渐隐提示还有内容 */
+#dock ul::-webkit-scrollbar { display: none; width: 0; height: 0; }
 #dock li { display: block; width: 52px; overflow: hidden; margin: 10px auto 0; text-align: center; height: 52px; padding-top: 6px; cursor: pointer; border-radius: 12px; transition: background .15s ease; }
 #dock li.hover, #dock li.C { background: rgba(255, 255, 255, .16); }
 #dock li img { width: 45px; height: 45px; }
@@ -421,7 +435,7 @@ body { padding: 10px; }
 	#mobile_mark { display: block; }
 
 	/* 任务栏：高度与窗口卡片保持桌面样式（层级已在桌面规则统一为 10000），卡片区可横向滚动 */
-	#tasks .tasks { left: 72px; right: 54px; top: -12px; height: 42px; margin-left: 0; display: flex; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+	#tasks .tasks { left: 76px; right: 54px; top: -12px; height: 42px; margin-left: 0; display: flex; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
 	#tasks .tasks li { flex: 0 0 auto; float: none; }
 	#tasks .tasks_right .tasks_Desktop { width: 45px; }
 
