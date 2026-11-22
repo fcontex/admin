@@ -118,7 +118,6 @@ $(function()
 	$('#username').focus();
 });
 </script>
-</style>
 </head>
 <body>
 <div class="login_box">
@@ -135,7 +134,7 @@ $(function()
 			</td>
 		</tr>
 		<tr>
-		  <td><div id="loginMessage"></div><input type="submit" class="button" value="登录" /><a href="#" onclick="window.top.fetchCode(); return false;">忘记密码？</a>&nbsp;&nbsp;<a href="../../../" target="_blank">返回首页</a></td>
+		  <td><div id="loginMessage"></div><input type="submit" class="button" value="登录" /><a href="#" onclick="window.top.fetchCode(); return false;">忘记密码？</a>&nbsp;&nbsp;<a href="<?php echo URL_SITE; ?>" target="_blank">返回首页</a></td>
 		</tr>
 	</table>
 	</form>
