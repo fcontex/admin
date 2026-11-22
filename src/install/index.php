@@ -223,23 +223,24 @@ $(function()
 	<div id="backimg"></div>
 	<div class="toper w_700 filter_8">
 		<h1>欢迎进入 <?php echo SYSTEM_NAME.' '.SYSTEM_VERSION; ?> 安装程序</h1>
-		<p>- We create awesome stuff -</p> 
+		<p>为 AI 开发而生 · 也为不一样的管理界面而生</p> 
 	</div>
 	<div class="content w_700 filter_8">
 	
 		<div id="step_1" class="steps" style="display:block;">
 			<h2>阅读发行协议</h2>
-			FContex Admin 采用 MIT 许可协议（MIT License）发布，版权归 Alan 所有。<br />
-			协议全文请见：<br />
-			<a href="https://github.com/fcontex/admin/blob/master/LICENSE" target="_blank">https://github.com/fcontex/admin/blob/master/LICENSE</a><br /><br />
+			FContex Admin 采用 MIT 许可协议（MIT License）发布，版权由 Alan 持有。<br />
+			协议全文请见（本程序发布包内已附带 LICENSE 文件）：<br />
+			<a href="../LICENSE" target="_blank">LICENSE</a><br /><br />
 			<strong>MIT License</strong><br />
 			您可以自由：<br />
 				使用、复制、修改、合并、发布、分发、再许可和/或销售本软件的副本，包括商业用途；<br />
 			惟须遵守下列条件：<br />
 				保留版权声明 — 在所有副本或软件的实质性部分中，须保留上述版权声明与本许可声明。<br />
-			免责声明 — 本软件按“现状”提供，不附带任何明示或暗示的担保，包括但不限于适销性、特定用途适用性及非侵权性的担保；作者或版权持有人不对任何索赔、损害或其他责任负责。<br /><br />
+			免责声明 — 本软件按“现状”提供，不附带任何明示或暗示的担保，包括但不限于适销性、特定用途适用性及非侵权性的担保；在任何情况下，无论基于合同、侵权或其他事由，作者或版权持有人均不对任何索赔、损害或其他责任负责。<br /><br />
+			以上为中文意译，如有歧义以英文原文（LICENSE 文件）为准。<br /><br />
 			Copyright (c) 2012-2026 Alan
-			<div class="button"><a class="button" id="button_1">我已阅读并同意上述许可条款</a></div>
+			<div class="button"><a class="button" id="button_1">我已阅读并了解上述许可条款</a></div>
 			<div class="clear"></div>
 		</div>
 		
