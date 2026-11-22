@@ -60,8 +60,12 @@ if (!empty($mode))
 		$config['DB_PFIX'] = $info['db_pfix'];
 		$A->saveConfig('system.database', $config);
 		
+		//刷新驱动内的表前缀缓存，否则本次请求仍会沿用安装前的旧前缀
+		FCDataBaseDriver::setPrefix($info['db_pfix']);
+		
 		//更新管理员（前端提交的是 md5 后的口令串 服务端再做散列存储）
-		$db->update($info['db_pfix'].'user', array
+		//注意：update() 内部经 tableName() 自动加表前缀，这里必须传裸表名，否则会拼成 fc_fc_user
+		$db->update('user', array
 		(
 			'us_username' => $info['us_name'],
 			'us_password' => password::hash(md5($info['us_pass']))

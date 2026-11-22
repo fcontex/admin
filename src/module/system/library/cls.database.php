@@ -26,6 +26,8 @@ abstract class FCDataBaseDriver
 	public $hold = TRUE;
 	public $charset = '';
 	public $name = '';
+	//表前缀缓存（安装向导改前缀后需用 setPrefix 刷新）
+	protected static $prefixCache = '';
 	
 	////////具体的驱动需要至少实现以下接口////////
 	
@@ -61,9 +63,16 @@ abstract class FCDataBaseDriver
 	*/
 	public function prefix()
 	{
-		static $prefix = '';
-		if (empty($prefix)) $prefix = FCApplication::loadConfig('system.database', 'DB_PFIX');
-		return $prefix;
+		if (empty(self::$prefixCache)) self::$prefixCache = FCApplication::loadConfig('system.database', 'DB_PFIX');
+		return self::$prefixCache;
+	}
+	
+	/***
+	 * 重设表前缀缓存（安装向导写入新配置后调用，避免继续沿用旧前缀）
+	*/
+	public static function setPrefix($prefix)
+	{
+		self::$prefixCache = trim($prefix);
 	}
 	
 	/***
