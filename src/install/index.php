@@ -75,9 +75,13 @@ if (!empty($mode))
 		FCApplication::resetDataBase();
 
 		//执行模块安装回调（创建各模块数据表）
+		//只遍历目录：module/ 下还有 index.php、startup.php 等文件，对它们拼路径会触发 open_basedir 警告
 		$handle = opendir(PATH_MODULES);
 		while (($name = readdir($handle)) !== false)
 		{
+			if ($name == '.' || $name == '..') continue;
+			if (!preg_match('/^[a-z0-9_]+$/i', $name)) continue;
+			if (!is_dir(PATH_MODULES.$name)) continue;
 			$file = PATH_MODULES.$name.'/module.php';
 			if (!is_file($file)) continue;
 			include $file;
@@ -260,7 +264,7 @@ $(function()
 					<dd><input type="text" class="text" name="db_user" id="db_user" value="root" /></dd>
 					<dt>数据库密码：</dt>
 					<dd><input type="text" class="text" name="db_pass" id="db_pass" /></dd>
-					<dt>数据库表前辍：</dt>
+					<dt>数据库表前缀：</dt>
 					<dd><input type="text" class="text" name="db_pfix" id="db_pfix" value="fc_" /></dd>
 				</dl>
 				<div class="clear"></div>
