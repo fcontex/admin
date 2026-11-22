@@ -46,7 +46,7 @@ if (!empty($mode))
 		}
 		catch (PDOException $e)
 		{
-			exit('ERR|安装失败：执行语句出错：<br />'.$sql.'<br /><br />请确认：<br />1、数据库连接信息是否正确；<br />2、数据库['.$info['db_base'].']是否已创建。');
+			exit('ERR|安装失败：执行语句出错：<br />'.htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8').'<br /><br />出错语句：<br />'.$sql.'<br /><br />请确认：<br />1、数据库连接信息是否正确；<br />2、数据库['.$info['db_base'].']是否已创建，字符集是否为 utf8mb4；<br />3、该库中是否已存在同名数据表（可更换表前缀重试）。');
 		}
 		
 		//更新配置
@@ -201,7 +201,7 @@ function install()
 		},
 		error     : function(XMLHttpRequest, textStatus, errorThrown)
 		{
-			$('#tips_3').html('超求超时。');
+			$('#tips_3').html('请求超时。');
 			$('#button_3_0').show(100);
 		}
 	});
@@ -238,21 +238,17 @@ $(function()
 	
 		<div id="step_1" class="steps" style="display:block;">
 			<h2>阅读发行协议</h2>
-			fcontex采用知识共享署名-非商业性使用-相同方式共享 2.5 中国大陆许可协议进行许可<br />
-			协议概要请见：<br />
-			<a href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/" target="_blank">http://creativecommons.org/licenses/by-nc-sa/2.5/cn/</a><br /><br />
-			<strong>Creative Commons (CC)<br />
-			署名-非商业性使用-相同方式共享 2.5 中国大陆 (CC BY-CN-SA 2.5)<br /></strong>
+			FContex Admin 采用 MIT 许可协议（MIT License）发布，版权归 Alan 所有。<br />
+			协议全文请见：<br />
+			<a href="https://github.com/fcontex/admin/blob/master/LICENSE" target="_blank">https://github.com/fcontex/admin/blob/master/LICENSE</a><br /><br />
+			<strong>MIT License</strong><br />
 			您可以自由：<br />
-				复制、发行、展览、表演、放映、广播或通过信息网络传播本作品；创作演绎作品；<br />
+				使用、复制、修改、合并、发布、分发、再许可和/或销售本软件的副本，包括商业用途；<br />
 			惟须遵守下列条件：<br />
-				署名 — 您必须按照作者或者许可人指定的方式对作品进行署名。<br />
-				非商业性使用 — 您不得将本作品用于商业目的。<br />
-				相同方式共享 — 如果您改变、转换本作品或者以本作品为基础进行创作，您只能采用与本协议相同的许可协议发布基于本作品的演绎作品。<br />
-		 	Notice — 对任何再使用或者发行，您都必须向他人清楚地展示本作品使用的许可协议条款。 <br /><br />
-			法律文本详见：<br />
-			<a href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/legalcode" target="_blank">http://creativecommons.org/licenses/by-nc-sa/2.5/cn/legalcode</a>
-			<div class="button"><a class="button" id="button_1">我已阅读并承诺遵守此协议</a></div>
+				保留版权声明 — 在所有副本或软件的实质性部分中，须保留上述版权声明与本许可声明。<br />
+			免责声明 — 本软件按“现状”提供，不附带任何明示或暗示的担保，包括但不限于适销性、特定用途适用性及非侵权性的担保；作者或版权持有人不对任何索赔、损害或其他责任负责。<br /><br />
+			Copyright (c) 2012-2026 Alan
+			<div class="button"><a class="button" id="button_1">我已阅读并同意上述许可条款</a></div>
 			<div class="clear"></div>
 		</div>
 		

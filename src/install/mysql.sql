@@ -33,7 +33,7 @@ CREATE TABLE `fc_attached` (
 -- ----------------------------
 -- Records of fc_attached
 -- ----------------------------
-INSERT INTO `fc_attached` VALUES ('1', '1', '0', 'root.png', '735951354083439.png', '', '1', '9791', 'png', 'application/octet-stream', 'member/201211/28/', '0', '', '1354083439');
+INSERT INTO `fc_attached` VALUES ('1', '1', '0', '0', 'root.png', '735951354083439.png', '', '1', '9791', 'png', 'application/octet-stream', 'member/201211/28/', '0', '', '1354083439');
 
 -- ----------------------------
 -- Table structure for `fc_group`
