@@ -66,7 +66,7 @@ $(function()
 		<td><input type="checkbox" class="checkbox" name="select" id="select_<?php echo $rst['ct_id']; ?>" value="<?php echo $rst['ct_id']; ?>" onchange="var _this = $(this); _this.prop('checked') ? _this.parent().parent().addClass('S') : _this.parent().parent().removeClass('S');" /></td>
 		<td><?php echo $rst['ct_id']; ?></td>
 		<td>
-			<a class="update" href="<?php echo $R->getPageUrl('content/fc.page.update/'.$rst['ct_id']); ?>"><?php echo $rst['ct_title']; ?></a><br />
+			<a class="update" href="<?php echo $R->getPageUrl('content/fc.page.update/'.$rst['ct_id']); ?>"><?php echo $rst['ct_title']; ?></a>
 			<div class="operate"><a class="update" href="<?php echo $R->getPageUrl('content/fc.page.update/'.$rst['ct_id']); ?>">修改</a><span>|</span><a class="delete" href="javascript:void(0);" onclick="content('fc.content.delete', <?php echo $rst['ct_id']; ?>);">删除</a></div>
         </td>
 		<td><?php echo $rstT['cg_title'] ? $rstT['cg_title'] : '未分类'; ?></td>

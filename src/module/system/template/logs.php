@@ -113,7 +113,7 @@ $items = $Q->page($pager);
 		<td><input type="checkbox" class="checkbox" name="select" id="select_<?php echo $rst['lg_id']; ?>" value="<?php echo $rst['lg_id']; ?>" onchange="var _this = $(this); _this.prop('checked') ? _this.parent().parent().addClass('S') : _this.parent().parent().removeClass('S');" /></td>
 		<td><?php echo $rst['lg_id']; ?></td>
 		<td>
-			<?php echo $rst['lg_event']; ?><br />
+			<?php echo $rst['lg_event']; ?>
 			<div class="operate"><a href="#" class="delete" onclick="logs('fc.logs.delete', <?php echo $rst['lg_id']; ?>); return false;">删除</a></div>        </td>
 		<td><?php
 		$logUserName = $rstu['us_name'] != '' ? $rstu['us_name'] : $rstu['us_username'];

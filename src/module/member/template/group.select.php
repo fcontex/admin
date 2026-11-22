@@ -65,7 +65,7 @@ $(function()
 		<td><input type="checkbox" class="checkbox" name="select" id="select_<?php echo $rst['gr_id']; ?>" value="<?php echo $rst['gr_id']; ?>" onchange="var _this = $(this); _this.prop('checked') ? _this.parent().parent().addClass('S') : _this.parent().parent().removeClass('S');" /></td>
 		<td><?php echo $rst['gr_id']; ?></td>
 		<td>
-			<a class="update" href="<?php echo $url=$R->getPageUrl('member/fc.group.update/'.$rst['gr_id']); ?>"><?php echo $rst['gr_name']; ?></a><br />
+			<a class="update" href="<?php echo $url=$R->getPageUrl('member/fc.group.update/'.$rst['gr_id']); ?>"><?php echo $rst['gr_name']; ?></a>
 			<div class="operate"><a class="update" href="<?php echo $url; ?>">编辑</a><span>|</span><a class="delete" href="javascript:void(0);" onclick="group('fc.group.delete', <?php echo $rst['gr_id']; ?>);">删除</a></div>
         </td>
 		<td><?php echo $rst['gr_desc']; ?></td>

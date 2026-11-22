@@ -259,7 +259,10 @@ body { padding: 10px; }
 .table_list th { background: var(--surface-2); padding: 12px 14px; color: var(--text-2); text-align: left; font-weight: 600; }
 .table_list td { background: var(--surface); padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .table_list tr:hover td, .table_list tr.S td { background: var(--surface-2); }
-.table_list .operate { padding-top: 5px; display: none; position: absolute; }
+.table_list td { position: relative; }
+/* 含行内操作的单元格预留右侧空间，防止长标题钻到按钮下方 */
+.table_list td:has(> .operate) { padding-right: 140px; }
+.table_list .operate { display: none; position: absolute; right: 14px; top: 12px; white-space: nowrap; }
 .table_list .operate span { padding: 0 6px; }
 /*列表横向滚动层：窗口较窄时表格在容器内滚动，不撑破窗口*/
 .table_scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -530,6 +533,8 @@ body { padding: 10px; }
 	.table_list .operate { display: block !important; position: static; padding-top: 6px; }
 	.table_list .operate a { display: inline-block; padding: 6px 2px; }
 	.table_list td { padding-bottom: 10px; }
+	/* 触屏常显回到文档流，解除桌面端右侧预留空间 */
+	.table_list td:has(> .operate) { padding-right: 14px; }
 	#easyTooltip { display: none !important; }
 	/* 模块管理：触屏不可拖拽排序，光标还原 */
 	.modules dl { cursor: default; }

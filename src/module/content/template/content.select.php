@@ -151,7 +151,7 @@ $items = $Q->page($pager);
 		<td><input type="checkbox" class="checkbox" name="select" id="select_<?php echo $rst['ct_id']; ?>" value="<?php echo $rst['ct_id']; ?>" onchange="var _this = $(this); _this.prop('checked') ? _this.parent().parent().addClass('S') : _this.parent().parent().removeClass('S');" /></td>
 		<td><?php echo $rst['ct_id']; ?></td>
 		<td>
-			<a class="update" href="<?php echo $R->getPageUrl('content/fc.content.update/'.$rst['ct_id']); ?>"><?php echo $rst['ct_title']; ?></a><br />
+			<a class="update" href="<?php echo $R->getPageUrl('content/fc.content.update/'.$rst['ct_id']); ?>"><?php echo $rst['ct_title']; ?></a>
 			<div class="operate">
 				<a class="update" href="<?php echo $R->getPageUrl('content/fc.content.update/'.$rst['ct_id']); ?>">修改</a><span>|</span>
 				<a class="update" href="javascript:void(0);" onclick="content('fc.content.refresh', <?php echo $rst['ct_id']; ?>);">刷新</a><span>|</span>

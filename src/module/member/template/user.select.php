@@ -102,7 +102,7 @@ $n = 0;
 		<td><input<?php if ($U->isSystemUser($rst['us_id']) && !$U->isSystemUser()) echo ' disabled="disabled"'; ?> type="checkbox" class="checkbox" name="select" id="select_<?php echo $rst['us_id']; ?>" value="<?php echo $rst['us_id']; ?>" onchange="var _this = $(this); _this.prop('checked') ? _this.parent().parent().addClass('S') : _this.parent().parent().removeClass('S');" /></td>
 		<td><?php echo $rst['us_id']; ?></td>
 		<td>
-			<a href="<?php if ($U->isSystemUser($rst['us_id']) && !$U->isSystemUser()){ ?>#<?php } else { echo $R->getPageUrl('member/fc.user.update/'.$rst['us_id']); } ?>"><?php echo $rst['us_username']; ?></a><br />
+			<a href="<?php if ($U->isSystemUser($rst['us_id']) && !$U->isSystemUser()){ ?>#<?php } else { echo $R->getPageUrl('member/fc.user.update/'.$rst['us_id']); } ?>"><?php echo $rst['us_username']; ?></a>
 			<div class="operate">
 				<a class="update" href="<?php if ($U->isSystemUser($rst['us_id']) && !$U->isSystemUser()){ ?>#<?php } else { echo $R->getPageUrl('member/fc.user.update/'.$rst['us_id']); } ?>">修改</a><span>|</span>
 				<?php

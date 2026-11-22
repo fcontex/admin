@@ -141,14 +141,14 @@ $typeArchive = isset($suffixGroups['archive']) ? $suffixGroups['archive'] : '';
 			if ($rst['at_remote'])
 			{
 			?>
-			<a href="<?php echo $rst['at_url']; ?>" target="_blank"><b><?php echo $rst['at_title']; ?></b></a><br /><span class="status_y">远程文件</span><br />
+			<a href="<?php echo $rst['at_url']; ?>" target="_blank"><b><?php echo $rst['at_title']; ?></b></a><br /><span class="status_y">远程文件</span>
 			<div class="operate"><a href="<?php echo $rst['at_url']; ?>" target="_blank">查看</a><span>|</span><a href="#" class="delete" onclick="attacheds('fc.file.delete', <?php echo $rst['at_id']; ?>); return false;">删除</a></div>
 			<?php
 			}
 			else
 			{
 			?>
-			<input type="text" class="text" value="<?php echo $rst['at_filename']; ?>" value2="<?php echo $rst['at_filename']; ?>" id="at_filename_<?php echo $rst['at_id']; ?>" onfocus="$(this).addClass('c');" onblur="attacheds('fc.file.update', <?php echo $rst['at_id']; ?>);" /><br /><?php echo strtoupper($rst['at_suffix']); ?><br />
+			<input type="text" class="text" value="<?php echo $rst['at_filename']; ?>" value2="<?php echo $rst['at_filename']; ?>" id="at_filename_<?php echo $rst['at_id']; ?>" onfocus="$(this).addClass('c');" onblur="attacheds('fc.file.update', <?php echo $rst['at_id']; ?>);" /><br /><?php echo strtoupper($rst['at_suffix']); ?>
 			<div class="operate"><a href="<?php echo $A->getThumb($rst['at_dir'].$rst['at_filenewname']); ?>" target="_blank">查看</a><span>|</span><a href="#" class="delete" onclick="attacheds('fc.file.delete', <?php echo $rst['at_id']; ?>); return false;">删除</a></div>
 			<?php
 			}
