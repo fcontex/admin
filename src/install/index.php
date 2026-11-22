@@ -101,14 +101,7 @@ else
 <title><?php echo SYSTEM_NAME.' '.SYSTEM_VERSION; ?> 安装程序</title>
 <link rel="stylesheet" type="text/css" href="images/style.css" />
 <script type="text/javascript" src="images/jquery.js"></script>
-<script type="text/javascript" src="images/jquery.fullscreenr.js"></script>
 <script type="text/javascript">
-function backResize()
-{
-	var backIMG = $('#backimg');
-	$.fn.fullscreenr({width:backIMG.width(), height:backIMG.height(), bgID:'#backimg'});
-	backIMG.fadeIn(1000);
-}
 function install()
 {
 	$('#tips_2').html('');
@@ -208,8 +201,6 @@ function install()
 }
 $(function()
 {
-	window.setTimeout(backResize, 500);
-	
 	$('#button_1').click(function()
 	{
 		$('#step_1').slideUp(300);
@@ -229,7 +220,7 @@ $(function()
 
 <body>
 	<div class="backimgMask"></div>
-	<img id="backimg" src="images/back.jpg" />
+	<div id="backimg"></div>
 	<div class="toper w_700 filter_8">
 		<h1>欢迎进入 <?php echo SYSTEM_NAME.' '.SYSTEM_VERSION; ?> 安装程序</h1>
 		<p>- We create awesome stuff -</p> 

@@ -30,7 +30,15 @@
 	#step_2 dl dd{display:block; width:480px; height:30px; float:left; padding-left:30px;}
 	
 	.backimgMask{position:absolute; z-index:-1; top:0; left:0; width:100%; height:100%; background:url(raster.png);}
-	#backimg{position:absolute; z-index:-2; display:none;}
+	#backimg
+	{
+		position:fixed; z-index:-2; top:0; left:0; width:100%; height:100%;
+		background-color:#0d1420;
+		background-image:
+			radial-gradient(900px 620px at 16% 10%, rgba(52,138,199,.45), rgba(52,138,199,0) 72%),
+			radial-gradient(820px 700px at 88% 94%, rgba(96,74,190,.40), rgba(96,74,190,0) 74%),
+			linear-gradient(120deg, #0d1420 0%, #131e2f 55%, #0a1018 100%);
+	}
 	
 	div.button{background:url(vertical_line.png) no-repeat center center; width:100%; float:left; text-align:center; margin-top:20px;}
 	a.button{background: none repeat scroll 0 0 #DD4A38; text-transform: uppercase;
