@@ -141,7 +141,7 @@ function startOpen()
 function startClose()
 {
 	if ($('#startmenu').is(':hidden')) return;
-	$('#startmenu').hide();
+	$('#startmenu').fadeOut(120);
 	$('#tasks .start').removeClass('C');
 }
 

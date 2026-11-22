@@ -175,6 +175,8 @@
 			
 			//层对象layer创建
 			var container = $('body'), layer = {content: container.append(cache.layer).find('#'+cache.layerid)};
+			//模态遮罩淡入（非模态时该元素不存在，空集合调用无副作用）
+			$('#dialog_mask').hide().fadeIn(180);
 			//最大化的窗口贴左上留 9px；手机端窗口是 fixed 定位，居中也不叠加滚动量
 			var posLeft, posTop;
 			if (isFill)
@@ -402,13 +404,31 @@
 			
 			//关闭前自动失焦
 			layer.blur();
-			
-			$('#dialog_mask').remove();
-			layer.content.remove();
-			
-			//关闭后自动聚焦新层
+			//立即把焦点交给下一个窗口，避免退场动画期间无响应
 			dialogs.autofocus();
-			
+
+			var mask = $('#dialog_mask'), done = false;
+			var finish = function()
+			{
+				if (done) return;
+				done = true;
+				mask.remove();
+				layer.content.remove();
+			};
+
+			//降低动态偏好：不播退场动画，立即移除
+			if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+			{
+				mask.stop(true, true);
+				finish();
+				return layer;
+			}
+
+			mask.stop(true).fadeOut(150);
+			layer.content.addClass('dlg-out').one('animationend', finish);
+			//兜底：动画事件异常时强制清理
+			setTimeout(finish, 320);
+
 			return layer;
 		};
 		
