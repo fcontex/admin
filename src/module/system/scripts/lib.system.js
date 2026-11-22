@@ -114,11 +114,11 @@
 			
 			if (cache.url)
 			{
-				cache.content = '<div class="dialog_loading" style="height:'+(cache.height-30)+'px;"></div><iframe onload="$(\'#'+cache.layerid+' .dialog_loading\').hide();" id="'+cache.frameid+'" width="100%" height="100%" scrolling="auto" frameborder="0" src="'+cache.url+'"></iframe>';
+				cache.content = '<div class="dialog_loading" style="height:'+(cache.height-42)+'px;"></div><iframe onload="$(\'#'+cache.layerid+' .dialog_loading\').hide();" id="'+cache.frameid+'" width="100%" height="100%" scrolling="auto" frameborder="0" src="'+cache.url+'"></iframe>';
 				cache.control = '<div class="ctrl">';
-				cache.control += cache.ctrl[0] ? '<span class="min"></span>' : '';
-				cache.control += cache.ctrl[1] ? '<span class="max"></span>' : '';
-				cache.control += cache.ctrl[2] ? '<span class="close"></span>' : '';
+				cache.control += cache.ctrl[0] ? '<span class="min" title="最小化" role="button" aria-label="最小化"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>' : '';
+				cache.control += cache.ctrl[1] ? '<span class="max" title="最大化" role="button" aria-label="最大化"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>' : '';
+				cache.control += cache.ctrl[2] ? '<span class="close" title="关闭" role="button" aria-label="关闭"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>' : '';
 				cache.control += '</div>';
 				//宽高改为open可传参数||默认
 				//cache.width = dialogs.width;
@@ -138,7 +138,7 @@
 					cache.content += '<input class="button cancle" type="button" value="取消" />';
 				}
 				cache.content +='</div></div>';
-				cache.control = '<div class="ctrl"></span><span class="close"></span></div>';
+				cache.control = '<div class="ctrl"><span class="close" title="关闭" role="button" aria-label="关闭"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span></div>';
 				cache.width = options.width || 340;
 				cache.height = options.height || 170;
 			}

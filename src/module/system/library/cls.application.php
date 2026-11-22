@@ -577,6 +577,9 @@ final class FCApplication
 			case 'doc':case 'docx':
 				$icon = 'file_doc.png';
 				break;
+			case 'pdf':
+				$icon = 'file_pdf.png';
+				break;
 			case 'ppt':case 'pptx':
 				$icon = 'file_ppt.png';
 				break;

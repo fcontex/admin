@@ -49,17 +49,17 @@ body { padding:10px; }
 #back_thumb span{position:absolute; display:block; width:150px; height:100%; background:url(preloader.gif) no-repeat center #000; opacity:0.5; filter:alpha(opacity=50);}
 
 /* 导航菜单 Navigation */
-#navs { width:72px; /*height:85%;*/overflow:hidden; position:absolute; z-index:1; top:50px; bottom:75px; border-radius:0 2px 2px 0; }
-#navs .back { position:absolute; width:100%; height:100%; z-index:-1; background:url(navs_back.png) #999; opacity:0.2; filter:alpha(opacity=20); border-radius:0 2px 2px 0; }
-#navs ul{margin-top:20px; height:calc(100% - 20px); overflow-y:auto; overflow-x:hidden;}
-#navs ul::-webkit-scrollbar{width:4px;}
-#navs ul::-webkit-scrollbar-thumb{background:#5E6B8C; border-radius:2px;}
-#navs ul::-webkit-scrollbar-track{background:transparent;}
-#navs li { display:block; width:58px; overflow:hidden; margin:10px auto 0 auto; text-align:center; height:52px; padding-top:6px; cursor:pointer; }
-#navs li.hover, #navs li.C { background:url(navs_hover.png) no-repeat; }
-#navs li img { width:45px; height:45px; }
-#navs dl { display:none; }
-#navs li .name { display:none; }
+#dock { width:72px; /*height:85%;*/overflow:hidden; position:absolute; z-index:1; top:50px; bottom:75px; border-radius:0 2px 2px 0; }
+#dock .back { position:absolute; width:100%; height:100%; z-index:-1; background:url(navs_back.png) #999; opacity:0.2; filter:alpha(opacity=20); border-radius:0 2px 2px 0; }
+#dock ul{margin-top:20px; height:calc(100% - 20px); overflow-y:auto; overflow-x:hidden;}
+#dock ul::-webkit-scrollbar{width:4px;}
+#dock ul::-webkit-scrollbar-thumb{background:#5E6B8C; border-radius:2px;}
+#dock ul::-webkit-scrollbar-track{background:transparent;}
+#dock li { display:block; width:58px; overflow:hidden; margin:10px auto 0 auto; text-align:center; height:52px; padding-top:6px; cursor:pointer; }
+#dock li.hover, #dock li.C { background:url(navs_hover.png) no-repeat; }
+#dock li img { width:45px; height:45px; }
+#dock dl { display:none; }
+#dock li .name { display:none; }
 
 #menus { width:100px; height:85%; position:absolute; z-index:1; left:100px; top:50px; margin-left:10px; border-radius:4px; display:none; }
 #menus .back { position:absolute; z-index:-1; height:100%; width:100%; }

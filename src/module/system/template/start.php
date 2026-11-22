@@ -23,7 +23,7 @@ function naviOpen(target)
 	if (target.length >= 2)
 	{
 		//一个模块可能对应多个一级图标（分组）：按叶子反查其所属分组再展开面板
-		$('#navs dd[navigate="'+targets+'"]').closest('li').removeClass('C').click();
+		$('#dock dd[navigate="'+targets+'"]').closest('li').removeClass('C').click();
 		$('#menus dd[navigate="'+targets+'"]').click();
 	}
 }
@@ -47,11 +47,11 @@ function naviUpdate()
 {
 	$$.get('<?php echo $R->getPageUrl('system/fc.menus'); ?>', function(text)
 	{
-		$('#menus').slideUp(100, function(){$('#navs ul').slideUp(100, function()
+		$('#menus').slideUp(100, function(){$('#dock ul').slideUp(100, function()
 		{
 			$(this).remove();
-			$('#navs').append(text).slideDown(100);
-			if (!$$.isTouch()) $('#navs li').easyTooltip();
+			$('#dock').append(text).slideDown(100);
+			if (!$$.isTouch()) $('#dock li').easyTooltip();
 			naviOpen();
 			startBuild();
 		});});
@@ -68,7 +68,7 @@ function naviClick(navi)
 	}
 	else
 	{
-		$('#navs li').removeClass(); _this.addClass('C');
+		$('#dock li').removeClass(); _this.addClass('C');
 		$('#menus .menus').empty().append(_this.find('dl').clone(true));
 		//显示之后再定位：隐藏时 jQuery 1.7.2 取不到高度，会把图标排成横排
 		$('#menus').slideDown(100, menuPosition);
@@ -94,11 +94,11 @@ function menuPosition()
 	}
 }
 
-//开始菜单：从 #navs 复用分组与菜单，避免服务端重复渲染
+//开始菜单：从 #dock 复用分组与菜单，避免服务端重复渲染
 function startBuild()
 {
 	var rail = '', panes = '', first = '';
-	$('#navs > ul > li').each(function()
+	$('#dock > ul > li').each(function()
 	{
 		var _this = $(this),
 		name  = _this.attr('module'),
@@ -210,8 +210,8 @@ function loginLayer()
 	({
 		name: 'login',
 		url: '<?php echo $R->getPageUrl('member/fc.user.login'); ?>',
-		width: mobile ? 340 : 550,
-		height: mobile ? 380 : 240,
+		width: mobile ? 340 : 620,
+		height: mobile ? 380 : 280,
 		model: true,
 		ctrl : [0, 0, 0],
 		create : function(layer){window.top.loginLayerObj = layer;}
@@ -341,7 +341,7 @@ $(function()
 	//菜单提示（触屏没有悬停，不初始化）
 	if (!$$.isTouch())
 	{
-		$('#navs li').easyTooltip();
+		$('#dock li').easyTooltip();
 		$('.tasks_Desktop').easyTooltip({xOffset : -83, yOffset : 50});
 	}
 	
@@ -364,12 +364,6 @@ $(function()
 	});
 	$(document).bind('keydown', function(e){if (e.keyCode == 27) startClose();});
 	$(window).bind('blur', function(){startClose();});
-	
-	//提示IE6
-	if (!window.XMLHttpRequest)
-	{
-		$('#Ie6Error').slideDown(600);
-	}
 	
 	//显示桌面
 	$('.tasks_Desktop').click(function()
@@ -421,7 +415,7 @@ $(function()
 	<div id="back_box"></div>
     <div id="back_thumb"><span></span><div></div></div>
     
-	<div id="navs">
+	<div id="dock">
 		<div class="back"></div>
 		<?php include 'menus.php'; ?>
 	</div>
@@ -453,9 +447,6 @@ $(function()
         	<div class="tasks_Desktop" title="显示桌面"></div>
         </div>
 	</div>
-	
-	<div id="Ie6Error">您使用的浏览器版本过低，影响网页性能，建议您换用<a href="http://info.msn.com.cn/ie9/" target="_blank">IE9</a>、<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html" target="_blank">谷歌</a>、或<a href="http://www.firefox.com.cn/download/" target="_blank">火狐</a>浏览器。</div>
-</div>
 
 </body>
 </html>
