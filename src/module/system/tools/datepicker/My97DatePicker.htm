@@ -38,7 +38,7 @@ $dp.realLang = $dp.getLang($dp.lang);
 document.write("<script src='lang/" + $dp.realLang.name + ".js' charset='" + $dp.realLang.charset + "'><\/script>");
 
 for (var i = 0; i < skinList.length; i++) {
-    document.write('<link rel="stylesheet" type="text/css" href="skin/' + skinList[i].name + '/datepicker.css" title="' + skinList[i].name + '" charset="' + skinList[i].charset + '" disabled="true"/>');
+    document.write('<link rel="stylesheet" type="text/css" href="skin/' + skinList[i].name + '/datepicker.css?v=' + skinVersion + '" title="' + skinList[i].name + '" charset="' + skinList[i].charset + '" disabled="true"/>');
 }
 </script>
 <script type="text/javascript" src="calendar.js"></script>

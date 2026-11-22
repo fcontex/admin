@@ -86,6 +86,10 @@ define('PATH_MODULE', PATH_ROOT.DIR_MODULES.'/'.DIR_MODULE.'/');
 define('URL_SITE', DIR_SITE);
 //皮肤URL（三级回落：用户自选 us_skin → 手工配置 skin_default → 内核兜底 default 不依赖数据库 安装态同样可用）
 define('URL_SKIN', $U->getSkin());
+//当前皮肤名称（第三方控件按皮肤目录提供多套配色时，用它去匹配同名皮肤）
+define('SKIN_NAME', basename(rtrim(URL_SKIN, '/')));
+//日期控件皮肤（仅当工具目录下存在同名皮肤时跟随当前皮肤，否则回落 default）
+define('DATE_SKIN', is_dir(PATH_TOOLS.'/datepicker/skin/'.SKIN_NAME) ? SKIN_NAME : 'default');
 //模块根URL
 define('URL_MODULES', URL_SITE.DIR_MODULES.'/');
 //当前模块URL

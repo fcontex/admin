@@ -251,7 +251,7 @@ $(function()
 	</tr>
 	<tr>
     	<th>发布时间</th>
-		<td><input class="text" type="text" name="ct_inserttime" id="ct_inserttime" value="<?php echo date('Y-m-d H:i:s', $rst['ct_inserttime']); ?>" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});" /> <span><cite>*</cite> 必填 发布时按此时间倒排序</span> </td>
+		<td><input class="text" type="text" name="ct_inserttime" id="ct_inserttime" value="<?php echo date('Y-m-d H:i:s', $rst['ct_inserttime']); ?>" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss', skin:'<?php echo DATE_SKIN; ?>'});" /> <span><cite>*</cite> 必填 发布时按此时间倒排序</span> </td>
 	</tr>
 	<tr>
 		<th>附加属性</th>

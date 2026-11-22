@@ -7,9 +7,9 @@
 */
 
 /* 评论/留言 List */
-.comment { background:#f3f3f3; margin:12px 0; border-bottom:1px solid #f3f3f3; box-shadow: 3px 3px 3px #ccc; -moz-box-shadow: 3px 3px 3px #ccc; -webkit-box-shadow: 3px 3px 3px #ccc;}
+.comment { background:var(--surface-2); margin:12px 0; border-bottom:1px solid var(--line); box-shadow:var(--shadow-sm); }
 .comment dt, .comment dd { height:42px; }
-.comment dd { background:#fcfcfc; }
+.comment dd { background:var(--surface); }
 .comment span { height:16px; line-height:16px; margin-top:12px; display:block; float:left; overflow:hidden; margin-left:10px; word-break:keep-all; }
 .comment .A { width:60px; }
 .comment .B { width:160px; }
@@ -18,4 +18,4 @@
 .comment .E { padding-right:20px; text-align:right; float:right; }
 .comment .E a.ud { background:url(icon_ud.gif) no-repeat right -16px; padding-right:16px; }
 .comment .E a.d  { background-position:right 0; }
-.comment .check { color:#ccc; }
+.comment .check { color:var(--text-3); }

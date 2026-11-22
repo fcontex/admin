@@ -83,7 +83,7 @@ $items = $Q->page($pager);
 				}
 				?>
             </select>
-            <input name="starttime" type="text" class="text date" style="width:80px;" onClick="WdatePicker()" value="<?php echo htmlspecialchars($starttime, ENT_QUOTES, 'UTF-8'); ?>" />-<input name="stoptime" type="text" class="text date" style="width:80px;" onClick="WdatePicker()" value="<?php echo htmlspecialchars($stoptime, ENT_QUOTES, 'UTF-8'); ?>" />
+            <input name="starttime" type="text" class="text date" style="width:80px;" onClick="WdatePicker({skin:'<?php echo DATE_SKIN; ?>'})" value="<?php echo htmlspecialchars($starttime, ENT_QUOTES, 'UTF-8'); ?>" />-<input name="stoptime" type="text" class="text date" style="width:80px;" onClick="WdatePicker({skin:'<?php echo DATE_SKIN; ?>'})" value="<?php echo htmlspecialchars($stoptime, ENT_QUOTES, 'UTF-8'); ?>" />
             <input type="submit" value="筛选" class="button" />
 			<input type="button" value="重置" class="button" onclick="$$.redirect('<?php echo $R->getPageUrl(); ?>');" />
 		</th>

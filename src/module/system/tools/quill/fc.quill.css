@@ -2,22 +2,36 @@
  * 只覆盖配色与尺寸，不修改 quill.snow.css 本身
  */
 
-.fc-quill { border:1px solid #ccd4dd; background:#fff; }
-.fc-quill .ql-toolbar.ql-snow { border:0; border-bottom:1px solid #e3e8ee; background:#f7f9fb; padding:4px 6px; }
-.fc-quill .ql-container.ql-snow { border:0; font-family:inherit; font-size:13px; }
+.fc-quill { border:1px solid var(--line-strong); background:var(--surface); border-radius:var(--r-sm); overflow:hidden; }
+.fc-quill .ql-toolbar.ql-snow { border:0; border-bottom:1px solid var(--line); background:var(--surface-2); padding:4px 6px; }
+.fc-quill .ql-container.ql-snow { border:0; font-family:inherit; font-size:13px; color:var(--text); }
 .fc-quill .ql-editor { min-height:320px; line-height:1.7; }
 .fc-quill .ql-editor img { max-width:100%; }
-.fc-quill .ql-editor.ql-blank::before { font-style:normal; color:#9aa7b4; }
+.fc-quill .ql-editor.ql-blank::before { font-style:normal; color:var(--text-3); }
+
+/* 工具栏图标与选择器跟随主题色 */
+.fc-quill .ql-snow .ql-stroke { stroke:var(--text-2); }
+.fc-quill .ql-snow .ql-fill,
+.fc-quill .ql-snow .ql-stroke.ql-fill { fill:var(--text-2); }
+.fc-quill .ql-snow .ql-picker { color:var(--text-2); }
+.fc-quill .ql-snow .ql-picker-options { background-color:var(--surface-2); border-color:var(--line); box-shadow:var(--shadow-md); }
+.fc-quill .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label,
+.fc-quill .ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-options { border-color:var(--line); }
+.fc-quill .ql-snow .ql-tooltip { background-color:var(--surface-2); border-color:var(--line); color:var(--text-2); box-shadow:var(--shadow-md); }
+.fc-quill .ql-snow .ql-tooltip input[type=text] { background:var(--surface); border-color:var(--line-strong); color:var(--text); }
+.fc-quill .ql-snow .ql-editor blockquote { border-left-color:var(--line-strong); }
+.fc-quill .ql-snow .ql-editor code,
+.fc-quill .ql-snow .ql-editor .ql-code-block-container { background-color:var(--surface-3); color:var(--text); }
 
 /* 简洁模式（副标题等短文本） */
 .fc-quill.fc-quill-s .ql-editor { min-height:80px; }
 
 /* HTML 源码视图 */
-.fc-quill .fc-quill-source { display:none; width:100%; box-sizing:border-box; min-height:320px; padding:10px 12px; border:0; outline:0; resize:vertical; font:12px/1.7 Consolas,Monaco,monospace; color:#333; }
+.fc-quill .fc-quill-source { display:none; width:100%; box-sizing:border-box; min-height:320px; padding:10px 12px; border:0; outline:0; resize:vertical; font:12px/1.7 Consolas,Monaco,monospace; color:var(--text); background:var(--surface); }
 .fc-quill.fc-quill-s .fc-quill-source { min-height:80px; }
 
 /* 自定义按钮（附件、源码）沿用主题按钮尺寸，图标走 ql-stroke 描边色 */
-.fc-quill .ql-snow.ql-toolbar .fc-src.ql-active .ql-stroke { stroke:#398dfd; }
+.fc-quill .ql-snow.ql-toolbar .fc-src.ql-active .ql-stroke { stroke:var(--accent); }
 
 /* 工具栏控件在窄屏下自适应换行 */
 @media (max-width:800px) {
