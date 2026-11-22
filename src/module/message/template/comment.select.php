@@ -103,7 +103,7 @@ foreach ($items as $rstP)
 		if ($children)
 		{
 		?>
-		<a class="delete" href="javascript:void(0);" style="opacity:0.5; filter:alpha(opacity=50); color:#ccc;">删除</a>
+		<a class="delete" href="javascript:void(0);" style="opacity:.5; color:var(--text-3);">删除</a>
 		<?php
 		}
 		else

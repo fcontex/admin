@@ -405,7 +405,7 @@ $(function()
 </script>
 <style type="text/css">html,body {width:100%; height:100%; overflow:hidden; margin:0; padding:0;}</style>
 </head>
-<body style="background:#D7F0FF;">
+<body style="background:var(--bg,#D7F0FF);">
 
 <div id="preloader"></div><div id="preloader_mark"></div>
 

@@ -91,7 +91,7 @@ $(function()
 			if ($name == $default)
 			{
 			?>
-			<a class="ins" href="javascript:void(0);" style="opacity:0.5; filter:alpha(opacity=50); color:#ccc;">设为默认</a> &nbsp;
+			<a class="ins" href="javascript:void(0);" style="opacity:.5; color:var(--text-3);">设为默认</a> &nbsp;
 			<?php
 			}
 			else
@@ -106,7 +106,7 @@ $(function()
 			if (in_array(strtoupper($name), explode('|', SYSTEM_MODULE)) || $name == $default)
 			{
 			?>
-			<a class="del" href="javascript:void(0);" style="opacity:0.5; filter:alpha(opacity=50); color:#ccc;">禁用</a>
+			<a class="del" href="javascript:void(0);" style="opacity:.5; color:var(--text-3);">禁用</a>
 			<?php
 			}
 			else
