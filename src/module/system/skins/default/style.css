@@ -131,7 +131,8 @@ body { padding: 10px; }
 #dock dl { display: none; }
 #dock li .name { display: none; }
 
-#menus { width: 100px; height: 85%; position: absolute; z-index: 1; left: 100px; top: 50px; margin-left: 10px; display: none; }
+/* top 比 #dock 低 19px：dock 首图标受 ul/li 内边距影响顶沿在 74，此处下移使两列首图标顶端对齐 */
+#menus { width: 100px; height: 85%; position: absolute; z-index: 1; left: 100px; top: 69px; margin-left: 10px; display: none; }
 #menus .back { position: absolute; z-index: -1; height: 100%; width: 100%; }
 #menus dd { display: block; position: absolute; width: 80px; height: 77px; overflow: hidden; padding-top: 5px; text-align: center; margin: 10px; float: left; cursor: pointer; border-radius: 14px; transition: background .15s ease; }
 #menus dd.hover { background: rgba(255, 255, 255, .16); }
