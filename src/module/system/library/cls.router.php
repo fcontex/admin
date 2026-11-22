@@ -196,7 +196,11 @@ class router
 		//404模板文件不存在
 		{
 			$this->header404();
-			exit('<strong style="font-size:24px;font-variant:small-caps;">Error 404: Page Not Found.</strong>');
+			$p = FCApplication::errorPalette();
+			exit('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Error 404</title></head>'
+				.'<body style="margin:0;text-align:center;padding-top:120px;background:'.$p['bg'].';font-family:Verdana,sans-serif;">'
+				.'<strong style="font-size:24px;font-variant:small-caps;color:'.$p['text'].';">Error 404: Page Not Found.</strong>'
+				.'</body></html>');
 		}
 	}
 }

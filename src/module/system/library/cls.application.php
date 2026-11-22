@@ -181,11 +181,41 @@ final class FCApplication
 		}
 		return TRUE;
 	}
-	
+
+	//错误页配色：独立文档不加载皮肤CSS，按登录态或Cookie选择浅/深两套（未知皮肤回落default）
+	public static function errorPalette()
+	{
+		$skin = isset($_SESSION['userInfo']['us_skin']) ? $_SESSION['userInfo']['us_skin'] : '';
+		$valid = $skin && preg_match('/^[a-z0-9_-]+$/i', $skin) && is_dir(PATH_MODULES.'system/skins/'.$skin);
+		if (!$valid)
+		{
+			$app = self::$instance;
+			$skin = $app ? $app->getCookie('skin') : '';
+			$valid = $skin && preg_match('/^[a-z0-9_-]+$/i', $skin) && is_dir(PATH_MODULES.'system/skins/'.$skin);
+		}
+		static $palettes = array(
+			'default' => array(
+				'bg' => '#f5f5f5', 'card' => '#ffffff', 'border' => '#E3E6EB',
+				'text' => '#555555', 'danger' => '#C0392B', 'accent' => '#2e9cca',
+			),
+			'dark' => array(
+				'bg' => '#0e141c', 'card' => '#18212d', 'border' => '#3c4d61',
+				'text' => '#e7eef7', 'danger' => '#ff6b6b', 'accent' => '#4aa3dd',
+			),
+		);
+		return $valid && isset($palettes[$skin]) ? $palettes[$skin] : $palettes['default'];
+	}
+
 	//数据库连接失败提示
 	private static function connectionError()
 	{
-		exit('<div style="margin:80px auto;width:560px;padding:20px 24px;border:1px solid #E3E6EB;border-radius:6px;background:#fff;font:14px/1.8 Arial,\'Microsoft YaHei\';color:#C0392B;">数据库连接失败，请检查 store/config/system.database.php 中的连接参数。</div>');
+		$p = self::errorPalette();
+		header('Content-Type: text/html; charset=utf-8');
+		exit('<!DOCTYPE html><html><head><meta charset="utf-8"><title>数据库连接失败</title></head>'
+			.'<body style="margin:0;background:'.$p['bg'].';font:14px/1.8 Arial,\'Microsoft YaHei\';">'
+			.'<div style="margin:80px auto;width:560px;padding:20px 24px;border:1px solid '.$p['border'].';border-radius:8px;background:'.$p['card'].';color:'.$p['danger'].';">'
+			.'数据库连接失败，请检查 store/config/system.database.php 中的连接参数。</div>'
+			.'</body></html>');
 	}
 	
 	//查询构造器实例化接口
