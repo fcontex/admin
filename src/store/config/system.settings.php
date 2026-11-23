@@ -15,6 +15,15 @@ return array
   //附件目录（相对 store，物理路径 = PATH_STORE.uploadDir.'/'）
   'uploadDir'	=> 'upload',
   
+  //登录失败限流：统计窗口（分钟）内允许失败 loginAttempts 次，超限锁定 loginLock 分钟
+  'loginAttempts' => 5,
+  'loginWindow'   => 15,
+  'loginLock'     => 15,
+  
+  //反向代理：站点在 CDN / 反代之后才置 1，并把反代直连 IP 填入白名单（逗号分隔），否则只认 REMOTE_ADDR
+  'trustProxy'     => 0,
+  'trustProxyList' => '',
+
   //Cookie配置
   'cookie_domain' => '',     //作用域
   'cookie_path'   => '/',    //作用路径

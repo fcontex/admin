@@ -699,23 +699,70 @@ final class FCApplication
 	//返回用户IP
 	public function getUserIP()
 	{
-		if(getenv('HTTP_CLIENT_IP') && strcasecmp(getenv('HTTP_CLIENT_IP'), 'unknown'))
+		//默认只信 REMOTE_ADDR；HTTP_CLIENT_IP / HTTP_X_FORWARDED_FOR 由客户端任意构造，无条件信任会让按IP的限流形同虚设
+		$remote = $this->filterIP(isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '');
+		
+		//仅当显式开启 trustProxy 且直连来源命中 trustProxyList 白名单时，才采纳转发头（反代部署用）
+		if ($remote !== '' && !empty($this->system['trustProxy']))
 		{
-			$ip = getenv('HTTP_CLIENT_IP');
-		} 
-		elseif(getenv('HTTP_X_FORWARDED_FOR') && strcasecmp(getenv('HTTP_X_FORWARDED_FOR'), 'unknown')) 
-		{
-			$ip = getenv('HTTP_X_FORWARDED_FOR');
-		} 
-		elseif(getenv('REMOTE_ADDR') && strcasecmp(getenv('REMOTE_ADDR'), 'unknown')) 
-		{
-			$ip = getenv('REMOTE_ADDR');
-		} 
-		elseif(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) 
-		{
-			$ip = $_SERVER['REMOTE_ADDR'];
+			$trusted = FALSE;
+			$list = isset($this->system['trustProxyList']) ? explode(',', (string)$this->system['trustProxyList']) : array();
+			foreach ($list as $proxy)
+			{
+				if (trim($proxy) !== '' && trim($proxy) === $remote)
+				{
+					$trusted = TRUE;
+					break;
+				}
+			}
+			
+			if ($trusted)
+			{
+				$chain = '';
+				if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+				{
+					$chain = $_SERVER['HTTP_X_FORWARDED_FOR'];
+				}
+				elseif (!empty($_SERVER['HTTP_CLIENT_IP']))
+				{
+					$chain = $_SERVER['HTTP_CLIENT_IP'];
+				}
+				
+				if ($chain !== '')
+				{
+					//多级转发取最左侧一个合法地址作为真实客户端
+					foreach (explode(',', $chain) as $item)
+					{
+						$ip = $this->filterIP($item);
+						if ($ip !== '')
+						{
+							$remote = $ip;
+							break;
+						}
+					}
+				}
+			}
 		}
-		return preg_match ( '/[\d\.]{7,15}/', $ip, $matches ) ? $matches [0] : '';
+		return $remote;
+	}
+	
+	//校验并规范化IP（IPv4 / IPv6 均可，剥离端口写法）
+	private function filterIP($ip)
+	{
+		$ip = trim((string)$ip);
+		if ($ip === '') return '';
+		//形如 [::1]:8080
+		if ($ip[0] === '[')
+		{
+			$pos = strpos($ip, ']');
+			if ($pos !== FALSE) $ip = substr($ip, 1, $pos - 1);
+		}
+		//形如 127.0.0.1:8080
+		elseif (strpos($ip, ':') !== FALSE && strpos($ip, '.') !== FALSE && substr_count($ip, ':') === 1)
+		{
+			$ip = substr($ip, 0, strrpos($ip, ':'));
+		}
+		return filter_var($ip, FILTER_VALIDATE_IP) ? $ip : '';
 	}
 	
 	//cookie设置

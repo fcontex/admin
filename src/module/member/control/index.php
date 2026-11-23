@@ -254,29 +254,25 @@ switch ($mode = $A->strGet('mode'))
 		}
 		else 
 		{
-			//暂以文件形式验证次数
+			//登录失败限流：IP 与账号双维度，阈值见 system.settings（loginAttempts / loginWindow / loginLock）
+			FCApplication::loadLibrary('loginlimit', 'member', FALSE);
 			$userip = $A->getUserIP();
-			$filePath = PATH_STORE.'cache/login/'.md5(($userip ? $userip : 'err')).'.php';
-			!file_exists($filePath) && file_put_contents($filePath, 5);
-			$hit = file_get_contents($filePath);
-			//以文件修改时间判断是否可以重置登录数
-			if ($hit < 1)
+			$wait = loginlimit::locked($userip, $username, $A->system);
+			if ($wait > 0)
 			{
-				$filemtime = filemtime($filePath);
-				if (($filemtime+60*15) < time())
-				{
-					$hit = 5;
-					file_put_contents($filePath, $hit);
-				}
-				else exit('ERR|重复次数过多，请'.intval(15 - (time() - $filemtime) / 60).'分钟后再试。');
+				exit('ERR|重复次数过多，请'.$wait.'分钟后再试。');
 			}
 			
 			$r = DB::table('user')->field('us_id,us_password')->where('us_username = ?', array($username))->row();
 			if (!$r || !password::verify($password, $r['us_password']))
 			{
-				$hit--;
-				file_put_contents($filePath, $hit);
-				echo 'ERR|用户名或密码不正确，还可以试'.$hit.'次。';
+				$left = loginlimit::fail($userip, $username, $A->system);
+				if ($left < 1)
+				{
+					$wait = loginlimit::locked($userip, $username, $A->system);
+					exit('ERR|重复次数过多，请'.($wait > 0 ? $wait : 1).'分钟后再试。');
+				}
+				echo 'ERR|用户名或密码不正确，还可以试'.$left.'次。';
 			}
 			else 
 			{
@@ -311,7 +307,7 @@ switch ($mode = $A->strGet('mode'))
 				$skin = $U->getSkin();
 				//Cookie 记忆上次显示皮肤 供登录页回落（与 fc.config.skin 切换时写入配对 30天滚动续写）
 				$A->setCookie('skin', basename(rtrim($skin, '/')), time() + 2592000);
-				file_put_contents($filePath, 5);
+				loginlimit::clear($userip, $username);
 				
 				$A->logInsert('登录了系统 #'.$username);
 				echo 'YES|'.$skin.'|'.$_SESSION['userInfo']['us_id'];

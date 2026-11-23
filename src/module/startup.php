@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
 //全局属性
 define('SYSTEM_INCLUDE', 'YES');
 define('SYSTEM_NAME', 'FContex Admin');
-define('SYSTEM_VERSION', '1.1.7');
+define('SYSTEM_VERSION', '1.1.8');
 //系统模块（不可禁用） content/plugin等内容型模块已可拆卸
 define('SYSTEM_MODULE', 'SYSTEM|MEMBER');
 define('ERROR_NO_RIGHTS', '没有操作权限。');
