@@ -22,7 +22,7 @@ FContex Admin 是一个轻量级管理后台开发框架，用于快速构建各
 
 - PHP 7.3 及以上（需启用 `pdo_mysql`、`session`，`gd` 缩略图扩展可选），推荐 8.x
 - MySQL 5.5.3 及以上（utf8mb4），推荐 5.7 / 8.0
-- Apache / Nginx / IIS 等 WEB 服务器（附 .htaccess 与 web.config）
+- Apache / Nginx / IIS 等 WEB 服务器（Apache 随包附 `src/.htaccess`；Nginx / IIS 的伪静态配置见 `docs/03.开发指南.md` 第 7.11 节）
 
 ## 快速开始
 

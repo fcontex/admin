@@ -1,16 +1,17 @@
-#??????
-DirectoryIndex index.html index.php
+# FContex Admin - Apache 伪静态
+# Nginx / IIS 的等价配置见 docs/03.开发指南.md 第 7.11 节；Nginx 不读取本文件。
+# 生效前提：站点根目录指向 src/，且 Apache 的 AllowOverride 允许本目录（推荐 All）。
 
-#???????
-ErrorDocument 404 /content/404.html
+DirectoryIndex index.php index.html
 
-#??????
+# 目录不提供文件列表（与 Nginx 的 autoindex off 行为一致）
 Options -Indexes
 
-#???????
+# 除真实存在的文件/目录，其余请求交给单一入口：
+# /系统/动作 -> index.php?系统/动作（由 index.php 解析 URL 决定进哪个模块）
 <IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /?$1 [L]
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /?$1 [L]
 </IfModule>
