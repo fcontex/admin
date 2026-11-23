@@ -5,7 +5,19 @@
 DirectoryIndex index.php index.html
 
 # 目录不提供文件列表（与 Nginx 的 autoindex off 行为一致）
-Options -Indexes
+Options -Indexes -MultiViews
+
+# 工程文件不应被下载：建表语句（install/*.sql）、文档、备份、日志等
+# 内层 IfModule 兼容 Apache 2.4（Require）与 2.2（Order/Deny）两套授权指令
+<FilesMatch "\.(sql|md|bak|log|ini|sh)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
 
 # 除真实存在的文件/目录，其余请求交给单一入口：
 # /系统/动作 -> index.php?系统/动作（由 index.php 解析 URL 决定进哪个模块）
