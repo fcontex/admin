@@ -230,8 +230,8 @@ $(function()
 	<div class="backimgMask"></div>
 	<div id="backimg"></div>
 	<div class="toper w_700 filter_8">
-		<h1>欢迎进入 <?php echo SYSTEM_NAME.' '.SYSTEM_VERSION; ?> 安装程序</h1>
-		<p>为 AI 开发而生 · 也为不一样的管理界面而生</p> 
+		<h1>欢迎使用 <?php echo SYSTEM_NAME.' '.SYSTEM_VERSION; ?> 安装程序</h1>
+		<p>为不一样的界面而生 · 在 AI 开发时代再次进化重生</p> 
 	</div>
 	<div class="content w_700 filter_8">
 	
@@ -257,7 +257,7 @@ $(function()
 				<h2>MySQL数据库信息</h2>
 				<dl>
 					<dt>数据库名称：</dt>
-					<dd style="height:80px;"><input type="text" class="text" name="db_base" id="db_base" /><br /><span id="db_base_tips">请先手动创建该名称的MySQL数据库，创建时：<br />[字 符 集] 选择“utf8mb4 -- UTF-8 Unicode”，<br />[排序规格] 选择“utf8mb4_general_ci”。</span></dd>
+					<dd style="height:80px;"><input type="text" class="text" name="db_base" id="db_base" /><br /><span id="db_base_tips">请先手动创建该名称的MySQL数据库，创建时：<br />[字符集] 选择“utf8mb4”，<br />[排序规格] 选择“utf8mb4_general_ci”。</span></dd>
 					<dt>数据库地址：</dt>
 					<dd><input type="text" class="text" name="db_host" id="db_host" value="127.0.0.1" /></dd>
 					<dt>数据库用户名：</dt>

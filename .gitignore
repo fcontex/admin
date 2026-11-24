@@ -18,3 +18,8 @@ src/store/upload/member/201211/*
 !src/store/upload/member/201211/28/
 src/store/upload/member/201211/28/*
 !src/store/upload/member/201211/28/735951354083439.png
+
+# Nginx/IIS 配置自 1.1.9 起仓库不维护，请参考 docs/03 第 7.11 节
+# 测试环境可能自动生成同名空文件，一律忽略，避免误提交
+nginx.htaccess
+web.config
