@@ -281,9 +281,12 @@ body { padding: 10px; }
 .table_list td { background: var(--surface); padding: 12px 14px; border-bottom: 1px solid var(--line); transition: background-color .15s ease; }
 .table_list tr:hover td, .table_list tr.S td { background: var(--surface-2); }
 .table_list td { position: relative; }
-/* 含行内操作的单元格预留右侧空间，防止长标题钻到按钮下方 */
-.table_list td:has(> .operate) { padding-right: 140px; }
-.table_list .operate { display: none; position: absolute; right: 14px; top: 12px; white-space: nowrap; }
+/* 行内操作：回到文档流独占一行，用 visibility 占位（display:none 会让行高塌陷）
+   行高永久付出，换来的是一不占列宽、二不遮挡标题、三悬停显隐不抖动 */
+.table_list .operate { display: block; position: static; visibility: hidden; margin-top: 4px; white-space: nowrap; }
+.table_list tr:hover .operate { visibility: visible; }
+/* 附件页例外：直接贴着后缀显示，第二行本来就有，不占第三行 */
+.table_list .files_name .operate { display: inline; margin: 0 0 0 12px; padding: 0; }
 .table_list .operate span { padding: 0 6px; }
 /*列表横向滚动层：窗口较窄时表格在容器内滚动，不撑破窗口*/
 .table_scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -327,11 +330,14 @@ body { padding: 10px; }
 .thumb h1 { display: block; width: 100%; height: 25px; line-height: 25px; text-align: center; background: var(--surface); color: var(--text-2); }
 
 /* 附件管理 */
+/* 高亮一律用 inset 阴影，不临时加 1px border：border 会改变盒子尺寸，
+   悬停/聚焦瞬间输入框宽度 +2px，table 自动布局重排列宽，整行文字会抖 */
 .files_name input { border: none; background: var(--surface-2); outline: none; border-radius: var(--r-sm); }
-.files_name input.c { border: 1px solid var(--danger); background: var(--surface); }
+.files_name input.c { background: var(--surface); box-shadow: inset 0 0 0 1px var(--danger), var(--shadow-focus); }
 /*附件列表链接列：只读框伪装成文本 点击全选复制*/
 .files_url input { border: none; background: var(--surface-2); outline: none; cursor: pointer; border-radius: var(--r-sm); }
-.files_url input:hover { border: 1px solid var(--line-strong); background: var(--surface); }
+.files_url input:hover { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.files_url input:focus { background: var(--surface); box-shadow: inset 0 0 0 1px var(--accent), var(--shadow-focus); }
 
 /* 模块列表 List */
 .modules dl { display: block; padding: 18px 18px 18px 96px; min-height: 64px; margin-bottom: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); box-shadow: var(--shadow-sm); cursor: move; position: relative; }
@@ -553,12 +559,10 @@ body { padding: 10px; }
 
 @media (hover: none), (pointer: coarse)
 {
-	/* 无悬停能力：行内操作常显并回到文档流，避免与标题重叠 */
-	.table_list .operate { display: block !important; position: static; padding-top: 6px; }
+	/* 无悬停能力：行内操作常显（visibility 强制可见），占位改由 padding-top 提供 */
+	.table_list .operate { visibility: visible !important; margin-top: 0; padding-top: 6px; }
 	.table_list .operate a { display: inline-block; padding: 6px 2px; }
 	.table_list td { padding-bottom: 10px; }
-	/* 触屏常显回到文档流，解除桌面端右侧预留空间 */
-	.table_list td:has(> .operate) { padding-right: 14px; }
 	#easyTooltip { display: none !important; }
 	/* 模块管理：触屏不可拖拽排序，光标还原 */
 	.modules dl { cursor: default; }

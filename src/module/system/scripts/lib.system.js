@@ -92,7 +92,8 @@
 				text  : options.text || '',
 				icon  : options.icon || 'TIP',
 				width : options.width || dialogs.width,
-				height: options.height || dialogs.height,
+				//默认高度按视口 80% 取，不低于 560、不高于 880
+				height: options.height || Math.min(Math.max(Math.round($(window).height() * 0.8), 560), 880),
 				ctrl  : options.ctrl || [1, 1, 1]
 			};
 			

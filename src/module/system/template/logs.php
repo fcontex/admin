@@ -31,17 +31,6 @@ function logs(mode, args)
 	return false;
 }
 
-$(function()
-{
-	$('.table_list tr').hover(function()
-	{
-		$(this).find('.operate').show();	
-	},
-	function()
-	{
-		$(this).find('.operate').hide();
-	});
-});
 </script>
 </head>
 <body>
