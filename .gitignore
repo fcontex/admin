@@ -23,3 +23,6 @@ src/store/upload/member/201211/28/*
 # 测试环境可能自动生成同名空文件，一律忽略，避免误提交
 nginx.htaccess
 web.config
+
+# 发版产物（本地打包输出目录，包本身通过 Release 分发）
+dist/
